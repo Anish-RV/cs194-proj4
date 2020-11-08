@@ -1,0 +1,45 @@
+<h1 id="part-1-dataloader">CS 194 Project4: Part 1 Dataloader</h1>
+<p>In this part, we had to detect the nose keypoint. Here are some of the ground truth keypoints:</p>
+<p><img src="main3/output_5_0.png" alt="png"></p>
+<p><img src="main3/output_5_1.png" alt="png"></p>
+<p><img src="main3/output_5_2.png" alt="png"></p>
+<p><img src="main3/output_5_3.png" alt="png"></p>
+<p>For the model, I used a learning rate of <code>1e-3</code>, batch size of 1, <code>20</code> input channels, a kernel size of <code>3</code> and 15 epochs for training and validation.</p>
+<h3 id="good-results">Good Results</h3>
+<p><img src="main3/output_14_1.png" alt="png"></p>
+<p><img src="main3/output_14_3.png" alt="png"></p>
+<p><img src="main3/output_14_5.png" alt="png"></p>
+<h3 id="bad-results">Bad Results</h3>
+<p><img src="main3/output_14_7.png" alt="png"></p>
+<p><img src="main3/output_14_9.png" alt="png"></p>
+<p>It fails for the images where the face is angled. This may be due to the limited amount of training data, due to which the model is unable to handle outlier cases where the head is angled in an unexpected way</p>
+<h4 id="plot-of-training-and-validation-errors-over-the-epochs">Plot of training and validation errors over the epochs</h4>
+<p><img src="main3/output_15_1.png" alt="png"></p>
+<h1 id="part-2-full-facial-keypoints-detection">Part 2: Full Facial Keypoints Detection</h1>
+<p>Now, we try to predict all the facial keypoints. Here are the ground truth labels:</p>
+<p><img src="main3/output_19_0.png" alt="png"></p>
+<p><img src="main3/output_19_1.png" alt="png"></p>
+<p><img src="main3/output_19_2.png" alt="png"></p>
+<p><img src="main3/output_19_3.png" alt="png"></p>
+<p>For the model, I used a learning rate of <code>1e-3</code>, <code>25</code> epochs, <code>15</code> input channels with a kernel size of <code>3x3</code> and batch size of 1. I used 5 <code>Conv2d</code> layers, each followed by a <code>ReLU</code> and pooling layer, and then 3 Fully Connected Layers.</p>
+<h4 id="plot-of-training-and-validation-errors-over-the-epochs">Plot of training and validation errors over the epochs</h4>
+<p><img src="main3/output_27_1.png" alt="png"></p>
+<h3 id="good-results">Good Results</h3>
+<p><img src="main3/output_26_5.png" alt="png"></p>
+<p><img src="main3/output_26_1.png" alt="png"></p>
+<h3 id="bad-results">Bad Results</h3>
+<p><img src="main3/output_26_2.png" alt="png"></p>
+<p><img src="main3/output_26_3.png" alt="png"></p>
+<p>The predicted points are fairly similar across faces, due to which some faces work pretty well and others do not. This is because the model is overfit to the training data and is too rigid and can be rectified by increasing the amount of training data the model has available.</p>
+<h1 id="part-3-train-with-larger-dataset">Part 3: Train with Larger Dataset</h1>
+<p>Now we try to predict the keypoints using a much larger training set and the ResNet18 model that comes preloaded into PyTorch. Here are
+some of the ground truth labels.</p>
+<p><img src="main_colab/output_26_0.png" alt="png"></p>
+<p><img src="main_colab/output_26_1.png" alt="png"></p>
+<p><img src="main_colab/output_26_2.png" alt="png"></p>
+<p><img src="main_colab/output_26_3.png" alt="png"></p>
+<p>For this model, I used a kernel size of <code>7x7</code>, <code>30</code> epochs of training and 1 input channel.
+Here are some of the resulting predictions:</p>
+<p><img src="main_colab/output_39_0.png" alt="png"></p>
+<p><img src="main_colab/output_39_2.png" alt="png"></p>
+<p><img src="main_colab/output_39_3.png" alt="png"></p>
